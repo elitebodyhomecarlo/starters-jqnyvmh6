@@ -9,12 +9,33 @@
   </head>
   <body>
     <nav>
-      <a href="/">Guest</a>
+      <a href="/">Dashboard</a>
       <a href="/Admin.html" aria-current="page">Admin</a>
       <a href="/page2.html">Other page</a>
+      <div id="user-info" class="user-info"></div>
     </nav>
     <main>
-      <h1>Admin page</h1>
+      <div id="admin-content">
+        <h1>Admin Dashboard</h1>
+        <p>This is a protected admin area. Only authenticated users can access this page.</p>
+        
+        <div class="admin-stats">
+          <div class="stat-card">
+            <h3>Total Users</h3>
+            <p id="user-count">Loading...</p>
+          </div>
+          
+          <div class="stat-card">
+            <h3>Your Account</h3>
+            <p id="user-email">Loading...</p>
+          </div>
+        </div>
+      </div>
+      
+      <div id="auth-required" class="auth-required" style="display: none;">
+        <h2>Authentication Required</h2>
+        <p>Please <a href="/">login</a> to access the admin dashboard.</p>
+      </div>
     </main>
   </body>
 </html>
