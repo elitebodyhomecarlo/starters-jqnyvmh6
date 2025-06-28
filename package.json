@@ -1,9 +1,10 @@
 {
   "scripts": {
     "start": "servor --reload",
-    "build": "echo 'Build script not yet configured. Add your build commands here.'"
+    "build": "cp -r . dist"
   },
   "dependencies": {
-    "servor": "^4.0.2"
+    "servor": "^4.0.2",
+    "@supabase/supabase-js": "^2.39.0"
   }
 }

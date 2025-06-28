@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Admin</title>
+    <title>Guest</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="styles.css" />
@@ -9,30 +9,30 @@
   </head>
   <body>
     <nav>
-      <a href="/guest.html">Guest</a>
-      <a href="/Admin.html" aria-current="page">Admin</a>
+      <a href="/guest.html" aria-current="page">Guest</a>
+      <a href="/Admin.html">Admin</a>
       <a href="/page2.html">Other page</a>
     </nav>
     <main>
-      <h1>Admin - Manage Routes</h1>
+      <h1>Available Routes</h1>
       <div id="routes-container">
         <p>Loading routes...</p>
       </div>
       
-      <h1>Admin - Manage Vehicles</h1>
+      <h1>Available Vehicles</h1>
       <div id="vehicles-container">
         <p>Loading vehicles...</p>
       </div>
     </main>
     
     <script type="module">
-      import { displayRoutesAdmin } from './js/routes.js';
-      import { displayVehiclesAdmin } from './js/vehicles.js';
+      import { displayRoutes } from './js/routes.js';
+      import { displayVehicles } from './js/vehicles.js';
       
       // Load data when page loads
       document.addEventListener('DOMContentLoaded', () => {
-        displayRoutesAdmin('routes-container');
-        displayVehiclesAdmin('vehicles-container');
+        displayRoutes('routes-container');
+        displayVehicles('vehicles-container');
       });
     </script>
   </body>
