@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "servor --reload"
+    "start": "servor --reload",
+    "build": "echo 'Build script not yet configured. Add your build commands here.'"
   },
   "dependencies": {
     "servor": "^4.0.2"
