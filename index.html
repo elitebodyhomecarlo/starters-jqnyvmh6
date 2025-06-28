@@ -1,20 +1,1928 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Guest</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Guest</a>
-      <a href="/Admin.html">Admin</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Guest page</h1>
-    </main>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROH AL JAZEERA - Premium Ride Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a3a5f;
+            --secondary: #e8b143;
+            --light: #f5f7fa;
+            --dark: #2c3e50;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --border-radius: 20px;
+            --box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --button-radius: 10px;
+            --container-padding: 30px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--light) 0%, #e9ecef 100%);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            box-shadow: var(--box-shadow);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .logo:hover {
+            color: var(--secondary);
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(-10deg);
+        }
+        
+        .header-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .header-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: var(--button-radius);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .header-btn:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .auth-btn {
+            background: linear-gradient(135deg, var(--secondary) 0%, #d39e00 100%);
+            color: var(--primary);
+            padding: 10px 18px;
+            border-radius: var(--button-radius);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .auth-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .auth-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.5s;
+        }
+        
+        .auth-btn:hover::after {
+            left: 140%;
+        }
+        
+        /* Main Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            min-height: calc(100vh - 150px);
+        }
+        
+        /* Page Sections */
+        .page {
+            display: none;
+            padding: var(--container-padding);
+            width: 100%;
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .app-title {
+            text-align: center;
+            margin: 20px 0 40px;
+            color: var(--primary);
+        }
+        
+        .app-title h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .app-title h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--dark);
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Form Elements */
+        select, input, textarea {
+            padding: 15px;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            background-color: #e9ecef;
+            transition: var(--transition);
+        }
+        
+        select:focus, input:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 58, 95, 0.2);
+        }
+        
+        select {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a3a5f'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 20px;
+        }
+        
+        /* Cards */
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 25px;
+            padding: 25px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* Buttons */
+        .btn {
+            background: linear-gradient(135deg, var(--secondary) 0%, #d39e00 100%);
+            color: var(--primary);
+            padding: 16px;
+            border: none;
+            border-radius: var(--button-radius);
+            cursor: pointer;
+            margin: 15px 0;
+            font-size: 1rem;
+            font-weight: 700;
+            width: 100%;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .btn:active {
+            transform: scale(0.98);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.5s;
+        }
+        
+        .btn:hover::after {
+            left: 140%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary) 0%, #d39e00 100%);
+        }
+        
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .btn-warning {
+            background: var(--warning);
+            color: var(--dark);
+        }
+        
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .back-btn {
+            background: white;
+            color: var(--dark);
+            border: 1px solid #ddd;
+        }
+        
+        .back-btn:hover {
+            background: #f8f9fa;
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+        }
+        
+        .call-btn {
+            background: linear-gradient(135deg, #34B7F1 0%, #128C7E 100%);
+            color: white;
+        }
+        
+        /* Vehicle Cards */
+        .vehicle-card {
+            border: 1px solid rgba(0,0,0,0.08);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: var(--border-radius);
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-left: 3px solid var(--primary);
+        }
+        
+        .vehicle-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .vehicle-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .vehicle-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.05) 100%);
+        }
+        
+        .vehicle-details {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            color: var(--dark);
+        }
+        
+        .vehicle-price {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin: 15px 0;
+            text-align: center;
+            background: rgba(26, 58, 95, 0.05);
+            padding: 12px;
+            border-radius: 10px;
+        }
+        
+        /* Confirmation Page */
+        .confirmation-details {
+            background-color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            box-shadow: var(--box-shadow);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .confirmation-image {
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .confirmation-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.05) 100%);
+        }
+        
+        .price-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 25px 0;
+            text-align: center;
+            background: rgba(26, 58, 95, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+        }
+        
+        .customer-info {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .customer-info h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Route Selection Page Enhancements */
+        .route-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .route-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .route-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            border-color: var(--secondary);
+        }
+        
+        .route-card.selected {
+            border-color: var(--secondary);
+            background-color: rgba(232, 177, 67, 0.05);
+        }
+        
+        .route-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .route-title {
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--primary);
+            text-align: center;
+            font-size: 1.25rem;
+        }
+        
+        .route-details {
+            color: var(--dark);
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 15px;
+            opacity: 0.85;
+        }
+        
+        .route-price {
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            font-size: 1.3rem;
+            background: rgba(26, 58, 95, 0.05);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        
+        .route-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Status badges */
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+        
+        .badge-success {
+            background: rgba(40, 167, 69, 0.15);
+            color: var(--success);
+        }
+        
+        .badge-warning {
+            background: rgba(255, 193, 7, 0.15);
+            color: var(--warning);
+        }
+        
+        .badge-danger {
+            background: rgba(220, 53, 69, 0.15);
+            color: var(--danger);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .main-container {
+                max-width: 992px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .main-container {
+                max-width: 768px;
+            }
+            
+            .route-options {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            .page {
+                padding: 20px;
+            }
+            
+            .vehicle-image, .confirmation-image {
+                height: 140px;
+            }
+            
+            .route-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-title h1 {
+                font-size: 1.8rem;
+            }
+            
+            .app-title h2 {
+                font-size: 1rem;
+            }
+            
+            .header-controls {
+                gap: 10px;
+            }
+            
+            .header-btn span {
+                display: none;
+            }
+        }
+        
+        /* Animation for elements */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .highlight {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d243b 100%);
+            color: white;
+            padding: 40px 15px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.05rem;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 25px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--success);
+            color: white;
+            padding: 18px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            z-index: 1000;
+            display: none;
+            animation: slideIn 0.3s ease-out;
+            font-weight: 500;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Form validation */
+        .invalid {
+            border-color: var(--danger) !important;
+        }
+        
+        .error-message {
+            color: var(--danger);
+            font-size: 0.85rem;
+            margin-top: -15px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        
+        .info-box {
+            background: rgba(232, 177, 67, 0.1);
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            color: var(--dark);
+        }
+
+        /* AI Assistant Styles */
+        .ai-assistant {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .assistant-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, #0d243b 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .assistant-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        }
+
+        .assistant-btn .ai-indicator {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .chat-container {
+            width: 350px;
+            height: 450px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            margin-bottom: 15px;
+            transform: scale(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+            opacity: 0;
+        }
+
+        .chat-container.active {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d243b 100%);
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-chat {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background-color: #f9f9f9;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .user-message {
+            background: var(--primary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message {
+            background: white;
+            color: var(--dark);
+            border: 1px solid #e0e0e0;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #e0e0e0;
+            background: white;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .chat-input button {
+            margin-left: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .chat-input button:hover {
+            background: var(--secondary);
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 18px;
+            align-self: flex-start;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #666;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .suggestion-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .suggestion-btn {
+            background: rgba(26, 58, 95, 0.1);
+            color: var(--primary);
+            border: none;
+            border-radius: 20px;
+            padding: 6px 15px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .suggestion-btn:hover {
+            background: rgba(26, 58, 95, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="header-container">
+            <div class="logo" onclick="goHome()">
+                <i class="fas fa-car logo-icon"></i>
+                <span>ROH AL JAZEERA</span>
+            </div>
+            <div class="header-controls">
+                <button id="header-back-btn" class="header-btn" style="display: none;">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </button>
+                <button id="auth-btn" class="auth-btn">
+                    <i class="fas fa-sign-in-alt"></i> Admin Login
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Guest Portal -->
+        <main id="guest-portal">
+            <!-- Location Selection Page -->
+            <section id="location-page" class="page active">
+                <div class="app-title">
+                    <h1>Premium Ride Services</h1>
+                    <h2>Across Saudi Arabia with Comfort and Reliability</h2>
+                </div>
+                
+                <h2>Select Your Route</h2>
+                <div class="route-options">
+                    <!-- Route cards will be inserted here by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Vehicle Selection Page -->
+            <section id="vehicle-page" class="page">
+                <div class="app-title">
+                    <h1>Choose Your Vehicle</h1>
+                    <h2>Select the perfect ride for your journey</h2>
+                </div>
+                
+                <h2 id="route-display"></h2>
+                <div class="spinner" id="vehicle-loading"></div>
+                <div class="vehicle-options">
+                    <!-- Vehicle cards will be inserted here by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Confirmation Page -->
+            <section id="confirmation-page" class="page">
+                <div class="app-title">
+                    <h1>Confirm Your Booking</h1>
+                    <h2>Finalize your ride details</h2>
+                </div>
+                
+                <div class="confirmation-details">
+                    <div id="selected-vehicle-image" class="confirmation-image">
+                        Vehicle Image
+                    </div>
+                    <h2 id="selected-vehicle-name"></h2>
+                    <div id="vehicle-details"></div>
+                    <div id="location-details"></div>
+                    <div class="price-display" id="price-display"></div>
+                    <p style="text-align: center; color: var(--dark); font-weight: 500; background: rgba(26, 58, 95, 0.05); padding: 12px; border-radius: 10px;">PAYMENT CASH AFTER RIDE</p>
+                    
+                    <div class="customer-info">
+                        <h3>Customer Information</h3>
+                        <div class="info-box">
+                            <i class="fas fa-info-circle"></i> 
+                            For WhatsApp sharing, no details required. For direct booking, please fill in your information.
+                        </div>
+                        
+                        <input type="text" id="customer-name" placeholder="Your Full Name (Required for booking)">
+                        <div id="name-error" class="error-message">Please enter your name</div>
+                        
+                        <input type="tel" id="customer-phone" placeholder="Your Saudi Phone Number (Required for booking)">
+                        <div id="phone-error" class="error-message">Please enter a valid Saudi phone number (e.g. 05XXXXXXXX or +9665XXXXXXXX)</div>
+                        
+                        <input type="date" id="ride-date">
+                        <input type="time" id="ride-time">
+                    </div>
+                </div>
+                
+                <button id="book-now-btn" class="btn">
+                    <i class="fas fa-check-circle"></i> Book Now
+                </button>
+                <button id="whatsapp-btn" class="btn whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Share via WhatsApp
+                </button>
+                <a id="call-btn" href="tel:+966574408160" class="btn call-btn">
+                    <i class="fas fa-phone"></i> Call for Booking
+                </a>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo">
+                <i class="fas fa-car logo-icon"></i>
+                <span>ROH AL JAZEERA</span>
+            </div>
+            <div class="footer-contact">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+966 57 440 8160</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@rohaljazeera.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Makkah, Saudi Arabia</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2023 ROH AL JAZEERA Online Ride Services. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- AI Assistant -->
+    <div class="ai-assistant">
+        <div class="chat-container" id="chat-container">
+            <div class="chat-header">
+                <h3><i class="fas fa-robot"></i> Booking Assistant</h3>
+                <button class="close-chat" id="close-chat"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot-message">
+                    Assalamu Alaikum! I'm your booking assistant. How can I help you today? 😊
+                    <div class="suggestion-buttons">
+                        <button class="suggestion-btn" data-query="Recommend a vehicle for 4 people">Recommend a vehicle for 4 people</button>
+                        <button class="suggestion-btn" data-query="What's the cheapest option?">What's the cheapest option?</button>
+                        <button class="suggestion-btn" data-query="How to book from Jeddah Airport?">How to book from Jeddah Airport?</button>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Ask about rides, routes, or booking...">
+                <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <div class="assistant-btn" id="assistant-btn">
+            <i class="fas fa-robot"></i>
+            <div class="ai-indicator"></div>
+        </div>
+    </div>
+
+    <script>
+        // Database with all 15 routes
+        const db = {
+            routes: [
+                {
+                    id: 1,
+                    name: "Jeddah Airport to Makkah Hotel",
+                    icon: "fas fa-plane-departure",
+                    description: "Direct transfer from Jeddah Airport to your hotel in Makkah",
+                    distance: "80 km",
+                    duration: "1.5 hours",
+                    popular: true
+                },
+                {
+                    id: 2,
+                    name: "Makkah Hotel to Makkah Ziyarah",
+                    icon: "fas fa-kaaba",
+                    description: "Visit sacred sites in Makkah from your hotel",
+                    distance: "5-10 km",
+                    duration: "15-30 min"
+                },
+                {
+                    id: 3,
+                    name: "Makkah Hotel to Madinah Hotel",
+                    icon: "fas fa-road",
+                    description: "Inter-city transfer between Makkah and Madinah",
+                    distance: "420 km",
+                    duration: "4-5 hours"
+                },
+                {
+                    id: 4,
+                    name: "Madinah Hotel to Madinah Ziyarah",
+                    icon: "fas fa-mosque",
+                    description: "Visit sacred sites in Madinah from your hotel",
+                    distance: "5-10 km",
+                    duration: "15-30 min"
+                },
+                {
+                    id: 5,
+                    name: "Makkah Hotel to Taif & Return",
+                    icon: "fas fa-mountains",
+                    description: "Day trip to Taif and return to Makkah",
+                    distance: "180 km",
+                    duration: "2.5 hours"
+                },
+                {
+                    id: 6,
+                    name: "Makkah Hotel to Jeddah Airport",
+                    icon: "fas fa-plane",
+                    description: "Transfer from Makkah hotel to Jeddah Airport",
+                    distance: "80 km",
+                    duration: "1.5 hours",
+                    popular: true
+                },
+                {
+                    id: 7,
+                    name: "Jeddah Airport to Madinah Hotel",
+                    icon: "fas fa-road",
+                    description: "Direct transfer from Jeddah Airport to Madinah hotel",
+                    distance: "420 km",
+                    duration: "4-5 hours"
+                },
+                {
+                    id: 8,
+                    name: "Madinah Airport to Madinah Hotel",
+                    icon: "fas fa-plane-arrival",
+                    description: "Transfer from Madinah Airport to your hotel",
+                    distance: "15 km",
+                    duration: "20 min"
+                },
+                {
+                    id: 9,
+                    name: "Madinah Hotel to Jeddah Airport",
+                    icon: "fas fa-plane-departure",
+                    description: "Transfer from Madinah hotel to Jeddah Airport",
+                    distance: "420 km",
+                    duration: "4-5 hours"
+                },
+                {
+                    id: 10,
+                    name: "Madinah Hotel to Makkah Hotel",
+                    icon: "fas fa-road",
+                    description: "Inter-city transfer between Madinah and Makkah",
+                    distance: "420 km",
+                    duration: "4-5 hours"
+                },
+                {
+                    id: 11,
+                    name: "Madinah Hotel to Madinah Airport",
+                    icon: "fas fa-plane",
+                    description: "Transfer from Madinah hotel to Madinah Airport",
+                    distance: "15 km",
+                    duration: "20 min"
+                },
+                {
+                    id: 12,
+                    name: "Makkah Hotel to Makkah Train Station",
+                    icon: "fas fa-train",
+                    description: "Transfer from hotel to Makkah Train Station",
+                    distance: "10 km",
+                    duration: "15 min"
+                },
+                {
+                    id: 13,
+                    name: "Makkah Train Station to Makkah Hotel",
+                    icon: "fas fa-hotel",
+                    description: "Transfer from Makkah Train Station to hotel",
+                    distance: "10 km",
+                    duration: "15 min"
+                },
+                {
+                    id: 14,
+                    name: "Madinah Train Station to Madinah Hotel",
+                    icon: "fas fa-train",
+                    description: "Transfer from Madinah Train Station to hotel",
+                    distance: "8 km",
+                    duration: "12 min"
+                },
+                {
+                    id: 15,
+                    name: "Madinah Hotel to Madinah Train Station",
+                    icon: "fas fa-train",
+                    description: "Transfer from hotel to Madinah Train Station",
+                    distance: "8 km",
+                    duration: "12 min"
+                }
+            ],
+            vehicles: [
+                {
+                    id: 1,
+                    make: 'Toyota',
+                    model: 'Camry',
+                    year: 2023,
+                    plate: 'ABC123',
+                    type: 'CAMRY',
+                    seats: 4,
+                    luggage: '2-3 Bags',
+                    price: 200
+                },
+                {
+                    id: 2,
+                    make: 'Hyundai',
+                    model: 'Staria',
+                    year: 2023,
+                    plate: 'XYZ789',
+                    type: 'STARIA',
+                    seats: 7,
+                    luggage: '5-7 Bags',
+                    price: 250
+                },
+                {
+                    id: 3,
+                    make: 'GMC',
+                    model: 'Yukon',
+                    year: 2023,
+                    plate: 'DEF456',
+                    type: 'GMC',
+                    seats: 7,
+                    luggage: '5-7 Bags',
+                    price: 350,
+                    luxury: true
+                },
+                {
+                    id: 4,
+                    make: 'Toyota',
+                    model: 'Hiace',
+                    year: 2022,
+                    plate: 'GHI789',
+                    type: 'HIACE',
+                    seats: 12,
+                    luggage: '10+ Bags',
+                    price: 300
+                }
+            ]
+        };
+
+        // Route prices for all 15 routes
+        const routePrices = {
+            "Jeddah Airport to Makkah Hotel": { CAMRY: 200, STARIA: 250, GMC: 350, HIACE: 300 },
+            "Makkah Hotel to Makkah Ziyarah": { CAMRY: 150, STARIA: 200, GMC: 300, HIACE: 250 },
+            "Makkah Hotel to Madinah Hotel": { CAMRY: 500, STARIA: 700, GMC: 1200, HIACE: 800 },
+            "Madinah Hotel to Madinah Ziyarah": { CAMRY: 150, STARIA: 200, GMC: 300, HIACE: 250 },
+            "Makkah Hotel to Taif & Return": { CAMRY: 400, STARIA: 500, GMC: 800, HIACE: 600 },
+            "Makkah Hotel to Jeddah Airport": { CAMRY: 200, STARIA: 250, GMC: 350, HIACE: 300 },
+            "Jeddah Airport to Madinah Hotel": { CAMRY: 600, STARIA: 800, GMC: 1300, HIACE: 900 },
+            "Madinah Airport to Madinah Hotel": { CAMRY: 150, STARIA: 200, GMC: 300, HIACE: 250 },
+            "Madinah Hotel to Jeddah Airport": { CAMRY: 600, STARIA: 800, GMC: 1300, HIACE: 900 },
+            "Madinah Hotel to Makkah Hotel": { CAMRY: 500, STARIA: 700, GMC: 1200, HIACE: 800 },
+            "Madinah Hotel to Madinah Airport": { CAMRY: 150, STARIA: 200, GMC: 300, HIACE: 250 },
+            "Makkah Hotel to Makkah Train Station": { CAMRY: 150, STARIA: 200, GMC: 300, HIACE: 250 },
+            "Makkah Train Station to Makkah Hotel": { CAMRY: 200, STARIA: 250, GMC: 350, HIACE: 300 },
+            "Madinah Train Station to Madinah Hotel": { CAMRY: 150, STARIA: 200, GMC: 300, HIACE: 250 },
+            "Madinah Hotel to Madinah Train Station": { CAMRY: 150, STARIA: 200, GMC: 300, HIACE: 250 }
+        };
+
+        // Route synonyms database
+        const routeSynonyms = {
+            "Jeddah Airport to Makkah Hotel": ["jeddah to makkah", "jeddah airport to makkah", "from jeddah to makkah hotel"],
+            "Makkah Hotel to Makkah Ziyarah": ["makkah ziyarah", "makkah tour", "visit makkah sites"],
+            "Makkah Hotel to Madinah Hotel": ["makkah to madinah", "makkah to madina", "intercity transfer"],
+            "Madinah Hotel to Madinah Ziyarah": ["madinah ziyarah", "madinah tour", "visit madinah sites"],
+            "Makkah Hotel to Taif & Return": ["taif trip", "day trip to taif", "makkah to taif"],
+            "Makkah Hotel to Jeddah Airport": ["makkah to jeddah airport", "to jeddah airport"],
+            "Jeddah Airport to Madinah Hotel": ["jeddah to madinah", "airport to madinah"],
+            "Madinah Airport to Madinah Hotel": ["madinah airport transfer", "from madinah airport"],
+            "Madinah Hotel to Jeddah Airport": ["madinah to jeddah airport", "to airport from madinah"],
+            "Madinah Hotel to Makkah Hotel": ["madinah to makkah", "madinah to makkah transfer"],
+            "Madinah Hotel to Madinah Airport": ["to madinah airport", "madinah to airport"],
+            "Makkah Hotel to Makkah Train Station": ["to train station", "makkah to railway"],
+            "Makkah Train Station to Makkah Hotel": ["from train station", "railway to hotel"],
+            "Madinah Train Station to Madinah Hotel": ["madinah station transfer", "from madinah station"],
+            "Madinah Hotel to Madinah Train Station": ["to madinah station", "hotel to railway"]
+        };
+
+        // Vehicle synonyms
+        const vehicleSynonyms = {
+            "CAMRY": ["camry", "sedan", "car", "toyota"],
+            "STARIA": ["staria", "van", "hyundai", "minivan"],
+            "GMC": ["gmc", "yukon", "suv", "luxury"],
+            "HIACE": ["hiace", "bus", "minibus", "toyota hiace"]
+        };
+
+        // Current booking state
+        let currentBooking = null;
+        let currentPage = 'location-page';
+        let chatState = {
+            currentRoute: null,
+            currentVehicle: null
+        };
+
+        // Initialize app when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set today's date as default
+            const today = new Date();
+            document.getElementById('ride-date').value = today.toISOString().split('T')[0];
+            
+            // Set default time to next hour
+            const nextHour = new Date(today.getTime() + 60 * 60 * 1000);
+            const hours = nextHour.getHours().toString().padStart(2, '0');
+            const minutes = nextHour.getMinutes().toString().padStart(2, '0');
+            document.getElementById('ride-time').value = `${hours}:${minutes}`;
+            
+            // Initialize the guest portal
+            initGuestPortal();
+            
+            // Setup event listeners
+            setupGuestBookingFlow();
+            
+            // Setup header back button
+            document.getElementById('header-back-btn').addEventListener('click', goBack);
+            
+            // Setup AI Assistant
+            setupEnhancedAIAssistant();
+        });
+
+        function initGuestPortal() {
+            // Load route options
+            loadRouteOptions();
+        }
+
+        function loadRouteOptions() {
+            const routeContainer = document.querySelector('.route-options');
+            if (!routeContainer) return;
+            
+            routeContainer.innerHTML = '';
+            
+            db.routes.forEach(route => {
+                // Get min price for this route
+                const prices = routePrices[route.name];
+                const minPrice = Math.min(...Object.values(prices));
+                
+                const routeCard = document.createElement('div');
+                routeCard.className = 'route-card';
+                routeCard.innerHTML = `
+                    ${route.popular ? '<div class="route-badge">Popular</div>' : ''}
+                    <div class="route-icon">
+                        <i class="${route.icon}"></i>
+                    </div>
+                    <div class="route-title">${route.name}</div>
+                    <div class="route-details">
+                        <div>${route.description}</div>
+                        <div>${route.distance} • ${route.duration}</div>
+                    </div>
+                    <div class="route-price">From ${minPrice} SAR</div>
+                `;
+                
+                routeCard.addEventListener('click', () => {
+                    selectRoute(route.name);
+                });
+                
+                routeContainer.appendChild(routeCard);
+            });
+        }
+
+        function selectRoute(routeName) {
+            // Update route display
+            document.getElementById('route-display').textContent = routeName;
+            
+            // Show vehicle page
+            showPage('vehicle-page');
+            
+            // Show loading spinner
+            document.getElementById('vehicle-loading').style.display = 'block';
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                // Load vehicle options for this route
+                loadVehicleOptions(routeName);
+                // Hide loading spinner
+                document.getElementById('vehicle-loading').style.display = 'none';
+            }, 800);
+        }
+
+        function loadVehicleOptions(routeName) {
+            const vehicleContainer = document.querySelector('.vehicle-options');
+            if (!vehicleContainer) return;
+            
+            vehicleContainer.innerHTML = '';
+            
+            db.vehicles.forEach(vehicle => {
+                const price = routePrices[routeName][vehicle.type];
+                
+                if (!price) {
+                    console.error(`No price defined for ${vehicle.type} on route ${routeName}`);
+                    return;
+                }
+                
+                const vehicleCard = document.createElement('div');
+                vehicleCard.className = 'vehicle-card';
+                vehicleCard.innerHTML = `
+                    <div class="vehicle-image">${vehicle.make} ${vehicle.model} ${vehicle.luxury ? '<span class="status-badge badge-warning">Luxury</span>' : ''}</div>
+                    <h3>${vehicle.make} ${vehicle.model}</h3>
+                    <div class="vehicle-details">
+                        <span><i class="fas fa-users"></i> ${vehicle.seats} Persons</span>
+                        <span><i class="fas fa-suitcase"></i> ${vehicle.luggage}</span>
+                    </div>
+                    <div class="vehicle-price">Price: SAR ${price}</div>
+                    <button class="btn" onclick="selectVehicle('${vehicle.make} ${vehicle.model}', '${vehicle.type}', '${routeName}', ${price}, ${vehicle.seats}, '${vehicle.luggage}', ${vehicle.luxury ? 'true' : 'false'})">
+                        Select This Vehicle
+                    </button>
+                `;
+                
+                vehicleContainer.appendChild(vehicleCard);
+            });
+        }
+
+        function selectVehicle(vehicleName, vehicleType, route, price, seats, luggage, isLuxury) {
+            currentBooking = {
+                vehicleName: vehicleName,
+                vehicleType: vehicleType,
+                route: route,
+                price: price,
+                persons: seats,
+                luggage: luggage,
+                isLuxury: isLuxury
+            };
+          
+            // Update confirmation page display
+            document.getElementById('selected-vehicle-name').innerHTML = `${vehicleName} ${isLuxury ? '<span class="status-badge badge-warning">Luxury</span>' : ''}`;
+            document.getElementById('selected-vehicle-image').textContent = vehicleName;
+            document.getElementById('vehicle-details').innerHTML = `
+                <div class="vehicle-details">
+                    <span><i class="fas fa-users"></i> ${currentBooking.persons} Persons</span>
+                    <span><i class="fas fa-suitcase"></i> ${currentBooking.luggage}</span>
+                </div>
+            `;
+            document.getElementById('location-details').innerHTML = `
+                <h3>Route</h3>
+                <p>${route}</p>
+            `;
+            document.getElementById('price-display').textContent = `PRICE: SAR ${price}`;
+            
+            // Reset form validation
+            resetFormValidation();
+            
+            showPage('confirmation-page');
+        }
+
+        function showPage(pageId) {
+            currentPage = pageId;
+            
+            document.querySelectorAll('.page').forEach(page => {
+                page.style.display = 'none';
+                page.classList.remove('active');
+            });
+            
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.style.display = 'block';
+                setTimeout(() => {
+                    activePage.classList.add('active');
+                }, 10);
+                window.scrollTo(0, 0);
+            }
+            
+            // Update header back button visibility
+            const backBtn = document.getElementById('header-back-btn');
+            if (pageId === 'location-page') {
+                backBtn.style.display = 'none';
+            } else {
+                backBtn.style.display = 'flex';
+            }
+        }
+
+        function goBack() {
+            if (currentPage === 'vehicle-page') {
+                showPage('location-page');
+            } else if (currentPage === 'confirmation-page') {
+                showPage('vehicle-page');
+            }
+        }
+        
+        function goHome() {
+            showPage('location-page');
+        }
+
+        function validateBookingForm() {
+            let isValid = true;
+            
+            // Reset previous validation
+            resetFormValidation();
+            
+            // Validate customer name
+            const customerName = document.getElementById('customer-name').value.trim();
+            if (!customerName) {
+                document.getElementById('customer-name').classList.add('invalid');
+                document.getElementById('name-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate phone number
+            const customerPhone = document.getElementById('customer-phone').value.trim();
+            if (!customerPhone) {
+                document.getElementById('customer-phone').classList.add('invalid');
+                document.getElementById('phone-error').style.display = 'block';
+                isValid = false;
+            } else if (!/^(\+9665|05|5)[0-9]{8}$/.test(customerPhone)) {
+                document.getElementById('customer-phone').classList.add('invalid');
+                document.getElementById('phone-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+
+        function resetFormValidation() {
+            // Remove invalid classes
+            document.getElementById('customer-name').classList.remove('invalid');
+            document.getElementById('customer-phone').classList.remove('invalid');
+            
+            // Hide error messages
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.style.display = 'none';
+            });
+        }
+
+        function showToast(message, isSuccess = true) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.backgroundColor = isSuccess ? 'var(--success)' : 'var(--danger)';
+            toast.style.display = 'block';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        function setupGuestBookingFlow() {
+            // Setup book now button
+            document.getElementById('book-now-btn').addEventListener('click', function() {
+                if (validateBookingForm()) {
+                    showToast('Booking confirmed! Thank you for choosing ROH AL JAZEERA.');
+                    
+                    // Reset form and return to home
+                    setTimeout(() => {
+                        document.getElementById('customer-name').value = '';
+                        document.getElementById('customer-phone').value = '';
+                        document.getElementById('ride-date').value = new Date().toISOString().split('T')[0];
+                        document.getElementById('ride-time').value = '';
+                        
+                        showPage('location-page');
+                    }, 2000);
+                }
+            });
+            
+            // Setup WhatsApp button
+            document.getElementById('whatsapp-btn').addEventListener('click', function() {
+                // WhatsApp sharing doesn't require validation
+                const customerName = document.getElementById('customer-name').value.trim();
+                const customerPhone = document.getElementById('customer-phone').value.trim();
+                const rideDate = document.getElementById('ride-date').value;
+                const rideTime = document.getElementById('ride-time').value;
+                
+                // Format date if available
+                let formattedDate = '';
+                if (rideDate) {
+                    formattedDate = new Date(rideDate).toLocaleDateString('en-US', { 
+                        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+                    });
+                }
+                
+                // Build WhatsApp message
+                let whatsappMsg = `Assalamu Alaikum,\n\nI would like to share a ride booking:\n\n`;
+                whatsappMsg += `*Vehicle:* ${currentBooking.vehicleName}\n`;
+                whatsappMsg += `*Route:* ${currentBooking.route}\n`;
+                whatsappMsg += `*Price:* SAR ${currentBooking.price}\n`;
+                whatsappMsg += `*Passengers:* ${currentBooking.persons}\n`;
+                whatsappMsg += `*Luggage:* ${currentBooking.luggage}\n\n`;
+                
+                // Include customer details if provided
+                if (customerName) {
+                    whatsappMsg += `*Name:* ${customerName}\n`;
+                }
+                if (customerPhone) {
+                    whatsappMsg += `*Phone:* ${customerPhone}\n`;
+                }
+                if (rideDate) {
+                    whatsappMsg += `*Date:* ${formattedDate}\n`;
+                }
+                if (rideTime) {
+                    whatsappMsg += `*Time:* ${rideTime}\n`;
+                }
+                
+                whatsappMsg += `\nPAYMENT: CASH AFTER RIDE`;
+                
+                const url = `https://wa.me/?text=${encodeURIComponent(whatsappMsg)}`;
+                window.open(url, '_blank');
+            });
+            
+            // Setup form validation on input change
+            document.getElementById('customer-name').addEventListener('input', function() {
+                if (this.value.trim()) {
+                    this.classList.remove('invalid');
+                    document.getElementById('name-error').style.display = 'none';
+                }
+            });
+            
+            document.getElementById('customer-phone').addEventListener('input', function() {
+                const value = this.value.trim();
+                if (value && /^(\+9665|05|5)[0-9]{8}$/.test(value)) {
+                    this.classList.remove('invalid');
+                    document.getElementById('phone-error').style.display = 'none';
+                }
+            });
+        }
+
+        // Enhanced AI Assistant with training knowledge
+        function setupEnhancedAIAssistant() {
+            const assistantBtn = document.getElementById('assistant-btn');
+            const chatContainer = document.getElementById('chat-container');
+            const closeChat = document.getElementById('close-chat');
+            const sendBtn = document.getElementById('send-btn');
+            const userInput = document.getElementById('user-input');
+            const chatMessages = document.getElementById('chat-messages');
+            
+            let conversationHistory = [
+                {
+                    role: "system",
+                    content: `You are a helpful booking assistant for ROH AL JAZEERA premium ride services in Saudi Arabia. 
+                              Follow these guidelines:
+                              1. Always start with Assalamu Alaikum when appropriate
+                              2. Be concise and helpful
+                              3. Answer FAQs based on the training guide
+                              4. When asked about routes or vehicles, provide specific details
+                              5. Guide users through the booking process when requested
+                              
+                              IMPORTANT KNOWLEDGE:
+                              - We offer 15 routes across Saudi Arabia
+                              - Vehicles: Camry (4 seats), Staria (7 seats), GMC Yukon (7 seats luxury), Hiace (12 seats)
+                              - Payment is CASH AFTER RIDE only
+                              - Contact: +966 57 440 8160
+                              - Office: Makkah, Saudi Arabia
+                              
+                              BOOKING PROCESS:
+                              1. Select route
+                              2. Choose vehicle
+                              3. Provide name and Saudi phone number
+                              4. Select date/time (optional)
+                              
+                              Use route synonyms for better matching.`
+                }
+            ];
+
+            // Toggle chat window
+            assistantBtn.addEventListener('click', () => {
+                chatContainer.classList.toggle('active');
+            });
+            
+            // Close chat
+            closeChat.addEventListener('click', () => {
+                chatContainer.classList.remove('active');
+            });
+            
+            // Send message when button is clicked
+            sendBtn.addEventListener('click', () => {
+                sendMessage();
+            });
+            
+            // Send message on Enter key
+            userInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            // Handle suggestion buttons
+            document.querySelectorAll('.suggestion-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const query = e.target.getAttribute('data-query');
+                    addMessage(query, 'user');
+                    getAIResponse(query);
+                });
+            });
+            
+            // Function to add a message to the chat
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}-message`;
+                messageDiv.textContent = text;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Add to conversation history
+                conversationHistory.push({
+                    role: sender === 'user' ? 'user' : 'assistant',
+                    content: text
+                });
+            }
+            
+            // Function to show typing indicator
+            function showTyping() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'typing-indicator';
+                typingDiv.id = 'typing-indicator';
+                typingDiv.innerHTML = 'Thinking <span></span><span></span><span></span>';
+                chatMessages.appendChild(typingDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            // Function to hide typing indicator
+            function hideTyping() {
+                const typing = document.getElementById('typing-indicator');
+                if (typing) typing.remove();
+            }
+            
+            // Function to send message
+            function sendMessage() {
+                const message = userInput.value.trim();
+                if (!message) return;
+                
+                addMessage(message, 'user');
+                userInput.value = '';
+                
+                // Check if message matches any route
+                const matchedRoute = matchRoute(message);
+                if (matchedRoute) {
+                    chatState.currentRoute = matchedRoute;
+                }
+                
+                // Check if message matches any vehicle
+                const matchedVehicle = matchVehicle(message);
+                if (matchedVehicle) {
+                    chatState.currentVehicle = matchedVehicle;
+                }
+                
+                getAIResponse(message);
+            }
+            
+            // Function to match route from user input
+            function matchRoute(userInput) {
+                const input = userInput.toLowerCase();
+                for (const [route, synonyms] of Object.entries(routeSynonyms)) {
+                    const allTerms = [route.toLowerCase(), ...synonyms];
+                    if (allTerms.some(term => input.includes(term))) {
+                        return route;
+                    }
+                }
+                return null;
+            }
+            
+            // Function to match vehicle from user input
+            function matchVehicle(userInput) {
+                const input = userInput.toLowerCase();
+                for (const [vehicle, synonyms] of Object.entries(vehicleSynonyms)) {
+                    const allTerms = [vehicle.toLowerCase(), ...synonyms];
+                    if (allTerms.some(term => input.includes(term))) {
+                        return vehicle;
+                    }
+                }
+                return null;
+            }
+            
+            // Function to get AI response with enhanced knowledge
+            async function getAIResponse(userMessage) {
+                showTyping();
+                
+                try {
+                    // Add the user message to conversation history
+                    conversationHistory.push({ role: "user", content: userMessage });
+                    
+                    // Make the API request
+                    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer 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`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            model: "mixtral-8x7b-32768",
+                            messages: conversationHistory,
+                            temperature: 0.7,
+                            max_tokens: 1024,
+                            stream: false
+                        })
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error(`API error: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    const aiResponse = data.choices[0].message.content;
+                    
+                    hideTyping();
+                    addMessage(aiResponse, 'bot');
+                    
+                    // Add suggestion buttons
+                    const messageDiv = document.querySelector('.bot-message:last-child');
+                    
+                    // Add route/vehicle specific suggestions if matched
+                    let suggestionHTML = '<div class="suggestion-buttons">';
+                    
+                    if (chatState.currentRoute) {
+                        suggestionHTML += `<button class="suggestion-btn" data-query="Book ${chatState.currentRoute}">Book this route</button>`;
+                    }
+                    
+                    if (chatState.currentVehicle) {
+                        suggestionHTML += `<button class="suggestion-btn" data-query="${chatState.currentVehicle} price">${chatState.currentVehicle} price</button>`;
+                    }
+                    
+                    suggestionHTML += `
+                        <button class="suggestion-btn" data-query="Payment methods">Payment methods</button>
+                        <button class="suggestion-btn" data-query="Contact support">Contact support</button>
+                    </div>`;
+                    
+                    messageDiv.innerHTML += suggestionHTML;
+                    
+                    // Reattach event listeners to new buttons
+                    document.querySelectorAll('.suggestion-btn').forEach(button => {
+                        button.addEventListener('click', (e) => {
+                            const query = e.target.getAttribute('data-query');
+                            addMessage(query, 'user');
+                            getAIResponse(query);
+                        });
+                    });
+                    
+                } catch (error) {
+                    hideTyping();
+                    console.error('AI Error:', error);
+                    // Fallback responses with trained knowledge
+                    let fallbackResponse = getFallbackResponse(userMessage);
+                    addMessage(fallbackResponse, 'bot');
+                }
+            }
+            
+            // Get fallback response based on trained knowledge
+            function getFallbackResponse(userMessage) {
+                const lowerMessage = userMessage.toLowerCase();
+                
+                // Route questions
+                if (lowerMessage.includes("route") || lowerMessage.includes("transfer")) {
+                    return "We offer 15 routes across Saudi Arabia, including:\n" +
+                           "- Airport transfers (Jeddah/Madinah)\n" +
+                           "- Inter-city transfers (Makkah to Madinah)\n" +
+                           "- Ziyarah tours in Makkah and Madinah\n" +
+                           "- Train station transfers\n" +
+                           "Which route are you interested in?";
+                }
+                
+                // Vehicle questions
+                if (lowerMessage.includes("vehicle") || lowerMessage.includes("car")) {
+                    return "We have 4 vehicle types:\n" +
+                           "1. Toyota Camry: 4 passengers, 2-3 bags\n" +
+                           "2. Hyundai Staria: 7 passengers, 5-7 bags\n" +
+                           "3. GMC Yukon (Luxury): 7 passengers, 5-7 bags\n" +
+                           "4. Toyota Hiace: 12 passengers, 10+ bags\n" +
+                           "Which vehicle suits your needs?";
+                }
+                
+                // Pricing questions
+                if (lowerMessage.includes("price") || lowerMessage.includes("cost")) {
+                    return "Prices vary by route and vehicle. For example:\n" +
+                           "- Jeddah Airport to Makkah: 200-350 SAR\n" +
+                           "- Makkah to Madinah: 500-1200 SAR\n" +
+                           "Please specify a route for accurate pricing.";
+                }
+                
+                // Payment questions
+                if (lowerMessage.includes("payment") || lowerMessage.includes("pay")) {
+                    return "We accept CASH AFTER RIDE only. No online payments or credit cards. " +
+                           "Payment is made directly to the driver after completing your journey.";
+                }
+                
+                // Booking process
+                if (lowerMessage.includes("book") || lowerMessage.includes("reserve")) {
+                    return "To book:\n" +
+                           "1. Select your route\n" +
+                           "2. Choose a vehicle\n" +
+                           "3. Provide your name and Saudi phone number\n" +
+                           "4. Select date/time (optional)\n" +
+                           "You can complete booking on our website or call us at +966 57 440 8160.";
+                }
+                
+                // Contact information
+                if (lowerMessage.includes("contact") || lowerMessage.includes("support")) {
+                    return "Contact us:\n" +
+                           "📞 Phone: +966 57 440 8160\n" +
+                           "✉️ Email: info@rohaljazeera.com\n" +
+                           "📍 Location: Makkah, Saudi Arabia\n" +
+                           "We're available 24/7 for your inquiries!";
+                }
+                
+                // Default response
+                return "Thank you for your question! I can help with:\n" +
+                       "- Booking rides\n" +
+                       "- Route information\n" +
+                       "- Vehicle selection\n" +
+                       "- Pricing details\n" +
+                       "- Payment methods\n\n" +
+                       "How can I assist you today?";
+            }
+        }
+    </script>
+</body>
 </html>
