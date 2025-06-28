@@ -9,31 +9,12 @@
   </head>
   <body>
     <nav>
-      <a href="/guest.html">Guest</a>
+      <a href="/">Guest</a>
       <a href="/Admin.html" aria-current="page">Admin</a>
       <a href="/page2.html">Other page</a>
     </nav>
     <main>
-      <h1>Admin - Manage Routes</h1>
-      <div id="routes-container">
-        <p>Loading routes...</p>
-      </div>
-      
-      <h1>Admin - Manage Vehicles</h1>
-      <div id="vehicles-container">
-        <p>Loading vehicles...</p>
-      </div>
+      <h1>Admin page</h1>
     </main>
-    
-    <script type="module">
-      import { displayRoutesAdmin } from './js/routes.js';
-      import { displayVehiclesAdmin } from './js/vehicles.js';
-      
-      // Load data when page loads
-      document.addEventListener('DOMContentLoaded', () => {
-        displayRoutesAdmin('routes-container');
-        displayVehiclesAdmin('vehicles-container');
-      });
-    </script>
   </body>
 </html>
